@@ -5,6 +5,7 @@
     <!-- Strings for input fields -->
     <string name="url">http://</string>
     <string name="add_portal">Add Portal</string>
+    <string name="not_valid_portal">Invalid portal</string>
 
 
 
