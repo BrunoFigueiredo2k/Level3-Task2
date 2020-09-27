@@ -6,6 +6,7 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import kotlinx.android.synthetic.main.activity_main.*
@@ -13,6 +14,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 
+    // TODO: Extend the configuration line in onCreate() with a second parameter: rv_parts.adapter = PartAdapter(testData, { partItem : PartData -> partItemClicked(partItem) })
+    // see: https://www.andreasjakl.com/recyclerview-kotlin-style-click-listener-android/, ctrl + F = Register the Click Handler Function with the Adapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -25,8 +28,13 @@ class MainActivity : AppCompatActivity() {
             )
         }
         fabToggler()
-
     }
+
+    private fun partItemClicked(portal : Portal) {
+        Toast.makeText(this, "Clicked: ${portal.title}", Toast.LENGTH_LONG).show()
+    }
+
+
 
     private fun fabToggler() {
         navController.addOnDestinationChangedListener { _,       destination, _ ->
