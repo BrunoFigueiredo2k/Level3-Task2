@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.setFragmentResultListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,7 +18,8 @@ import kotlinx.android.synthetic.main.fragment_portals.*
  */
 class PortalsFragment : Fragment() {
     private val portals = arrayListOf<Portal>()
-    private val portalsAdapter = PortalAdapter(portals)
+    // TODO: Fix this second parameter with function
+    private val portalsAdapter = PortalAdapter(portals, { portalItem : Portal -> portalItemClicked(portalItem) })
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,6 +27,10 @@ class PortalsFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_portals, container, false)
+    }
+
+    private fun portalItemClicked(portal : Portal) {
+        Toast.makeText(this.context, "Clicked: ${portal.title}", Toast.LENGTH_LONG).show()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,7 +50,7 @@ class PortalsFragment : Fragment() {
     private fun observeAddPortalResult() {
         setFragmentResultListener(REQ_PORTAL_KEY) { key, bundle ->
             bundle.getString(BUNDLE_PORTAL_KEY)?.let {
-                val portal = Portal(it)
+                val portal = Portal(it, it)
 
                 portals.add(portal)
                 portalsAdapter.notifyDataSetChanged()

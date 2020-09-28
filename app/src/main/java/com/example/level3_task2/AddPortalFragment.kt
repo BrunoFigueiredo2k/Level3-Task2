@@ -32,7 +32,6 @@ class AddPortalFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_add_portal, container, false)
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,7 +51,7 @@ class AddPortalFragment : Fragment() {
         // Check if submitted unput is not empty
         if (portalTitle.isNotBlank() && portalUrl.isNotBlank()){
             //set the data as fragmentResult, we are listening for REQ_REMINDER_KEY in PortalsFragment!
-            val portalData : Array<String> = arrayOf(portalTitle, portalUrl)
+            val portalData = Portal(portalTitle, portalUrl)
             setFragmentResult(REQ_PORTAL_KEY, bundleOf(Pair(BUNDLE_PORTAL_KEY, portalData)))
 
             // Destroy current fragment to go back to home fragment
