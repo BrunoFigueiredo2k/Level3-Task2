@@ -1,21 +1,15 @@
 package com.example.level3_task2
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.fragment_add_portal.*
-import kotlinx.android.synthetic.main.fragment_portals.*
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -37,8 +31,8 @@ class AddPortalFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // On click add portal button
         addBtn.setOnClickListener {
-//            navigateToPortalsList()
             onAddPortal()
         }
     }
@@ -48,9 +42,9 @@ class AddPortalFragment : Fragment() {
         val portalTitle = title.text.toString()
         val portalUrl = url.text.toString()
 
-        // Check if submitted unput is not empty
+        // Check if submitted input is not empty
         if (portalTitle.isNotBlank() && portalUrl.isNotBlank()){
-            //set the data as fragmentResult, we are listening for REQ_REMINDER_KEY in PortalsFragment!
+            //set the data as fragmentResult, listening for REQ_PORTAL_KEY in PortalsFragment
             val portalData = Portal(portalTitle, portalUrl)
             setFragmentResult(REQ_PORTAL_KEY, bundleOf(Pair(BUNDLE_PORTAL_KEY, portalData)))
 

@@ -14,7 +14,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var adapter: PortalAdapter
 
-    // TODO: Extend the configuration line in onCreate() with a second parameter: rv_parts.adapter = PartAdapter(testData, { partItem : PartData -> partItemClicked(partItem) })
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

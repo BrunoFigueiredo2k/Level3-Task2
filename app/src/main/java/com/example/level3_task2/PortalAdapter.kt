@@ -29,8 +29,8 @@ class PortalAdapter(private val portals: List<Portal>, val clickListener: (Porta
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun databind(portal: Portal, clickListener: (Portal) -> Unit) {
-            itemView.tvPortal.text = portal.title
-            itemView.tvPortal.text = portal.url
+            itemView.titlePortal.text = portal.title
+            itemView.urlPortal.text = portal.url
             // Click listener for each viewholder in the recycler view (link to portal URL)
             itemView.setOnClickListener { clickListener(portal)}
         }
