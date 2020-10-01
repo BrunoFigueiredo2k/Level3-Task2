@@ -31,10 +31,9 @@ class PortalsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_portals, container, false)
     }
 
+    // On click portal call openNewTabWindow function that opens portal.url
     private fun portalItemClicked(portal : Portal) {
-        // check is chrom available
         context?.let { openNewTabWindow(portal.url, it) }
-//        Toast.makeText(this.context, "Clicked: ${portal.title}", Toast.LENGTH_LONG).show()
     }
 
     // Function to open url of card in new chrome tab
