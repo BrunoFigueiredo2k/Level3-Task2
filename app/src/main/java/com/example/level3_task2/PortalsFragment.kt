@@ -1,13 +1,14 @@
 package com.example.level3_task2
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.browser.customtabs.CustomTabsIntent
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,13 +33,18 @@ class PortalsFragment : Fragment() {
 
     private fun portalItemClicked(portal : Portal) {
         // check is chrom available
-        val packageName = customTabHelper.getPackageNameToUse(this, portal.url)
-        if (packageName == null)
-            // if chrome not available open in web view
-        else {
-            customTabsIntent.intent.setPackage(packageName) customTabsIntent.launchUrl(this, Uri.parse(portal.url))
-        }
+        context?.let { openNewTabWindow(portal.url, it) }
 //        Toast.makeText(this.context, "Clicked: ${portal.title}", Toast.LENGTH_LONG).show()
+    }
+
+    // Function to open url of card in new chrome tab
+    fun openNewTabWindow(urls: String, context : Context) {
+        val uris = Uri.parse(urls)
+        val intents = Intent(Intent.ACTION_VIEW, uris)
+        val b = Bundle()
+        b.putBoolean("new_window", true)
+        intents.putExtras(b)
+        context.startActivity(intents)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
