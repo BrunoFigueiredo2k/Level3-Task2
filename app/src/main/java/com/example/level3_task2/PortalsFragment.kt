@@ -63,7 +63,6 @@ class PortalsFragment : Fragment() {
     private fun observeAddPortalResult() {
         setFragmentResultListener(REQ_PORTAL_KEY) { key, bundle ->
             bundle.getParcelable<Portal>(BUNDLE_PORTAL_KEY)?.let {
-                // TODO: don't know if these parameters work... Data is not being added to each view in recycler view
                 val portal = it
 
                 portals.add(portal)
