@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import kotlinx.android.synthetic.main.fragment_portals.*
 
 
@@ -55,7 +56,7 @@ class PortalsFragment : Fragment() {
     private fun initViews() {
         // Initialize the recycler view with a linear layout manager, adapter
         rvPortals.layoutManager =
-            LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+            StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         rvPortals.adapter = portalsAdapter
         observeAddPortalResult()
     }
